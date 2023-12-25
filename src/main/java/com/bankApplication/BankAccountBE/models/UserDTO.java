@@ -7,11 +7,13 @@ public class UserDTO {
     private PublicUser publicUser;
     private List<Transaction> transactionList;
     private SavingAccount savingAccount;
+    private long totalSumOfTransactionAmount;
 
-    public UserDTO(PublicUser publicUser, List<Transaction> transactionList, SavingAccount savingAccount) {
+    public UserDTO(PublicUser publicUser, List<Transaction> transactionList, SavingAccount savingAccount, long totalSumOfTransactionAmount) {
         this.publicUser = publicUser;
         this.transactionList = transactionList;
         this.savingAccount = savingAccount;
+        this.totalSumOfTransactionAmount = totalSumOfTransactionAmount;
     }
 
 
@@ -37,5 +39,13 @@ public class UserDTO {
 
     public void setSavingAccount(SavingAccount savingAccount) {
         this.savingAccount = savingAccount;
+    }
+
+    public long getTotalSumOfTransactionAmount() {
+        return totalSumOfTransactionAmount;
+    }
+
+    public void setTotalSumOfTransactionAmount(long totalSumOfTransactionAmount) {
+        this.totalSumOfTransactionAmount = totalSumOfTransactionAmount;
     }
 }

@@ -28,6 +28,7 @@ public class UserDTOService {
         SavingAccount savingAccountByUserId = savingAccountService.findSavingAccountByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("SavingAccount not found with ID: " + userId));
         List<Transaction> transactionListByUserId = transactionService.findAllTransactionsByUserId(userId);
-        return new UserDTO(publicUserByUserId, transactionListByUserId,savingAccountByUserId);
+        long getTotalSumOfTransactions = transactionService.getAllTransactionSumByUserId(userId);
+        return new UserDTO(publicUserByUserId, transactionListByUserId, savingAccountByUserId, getTotalSumOfTransactions);
     }
 }

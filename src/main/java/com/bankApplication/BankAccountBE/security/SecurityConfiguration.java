@@ -68,6 +68,7 @@ public class SecurityConfiguration {
                     auth.anyRequest().authenticated();
                 });
 
+        //TODO: change this, as it is deprecated
         http.oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
