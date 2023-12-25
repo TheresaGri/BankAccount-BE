@@ -15,7 +15,6 @@ public class PublicUserService {
     }
 
     public Optional<PublicUser> findPublicUserByUserId(long userId) {
-        System.out.println(publicUserRepository.findPublicUserByUserId(userId));
         return publicUserRepository.findPublicUserByUserId(userId);
     }
 }

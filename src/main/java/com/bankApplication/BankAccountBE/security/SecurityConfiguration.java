@@ -59,9 +59,12 @@ public class SecurityConfiguration {
                 cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/login").permitAll();
-                    //TODO: is this correctly implemented?
-                    auth.requestMatchers("/publicUser/{userId}").access(userSecurity);
-                    //   auth.requestMatchers("/auth/register").hasAnyRole("ADMIN");
+                    auth.requestMatchers("/auth/register").hasAuthority("ROLE_ADMIN");
+                   /*  auth.requestMatchers("/publicUser/{userId}").access(userSecurity);
+                    auth.requestMatchers("/savingAccount/{userId}").access(userSecurity);
+                    */
+                    auth.requestMatchers("/transactions/{userId}").access(userSecurity);
+                    auth.requestMatchers("/userDTO/{userId}").access(userSecurity);
                     auth.anyRequest().authenticated();
                 });
 

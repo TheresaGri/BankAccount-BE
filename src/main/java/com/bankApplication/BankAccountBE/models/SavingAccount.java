@@ -15,10 +15,10 @@ public class SavingAccount {
 
     private long savingAccountAmount;
 
-    private Long userId;
+    private long userId;
 
 
-    public SavingAccount(long savingAccountAmount, Long userId) {
+    public SavingAccount(long savingAccountAmount, long userId) {
         this.savingAccountAmount = savingAccountAmount;
         this.userId = userId;
     }
@@ -34,11 +34,11 @@ public class SavingAccount {
         this.savingAccountAmount = savingAccountAmount;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 }

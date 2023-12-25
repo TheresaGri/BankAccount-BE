@@ -21,12 +21,12 @@ public class AuthenticationController {
     //have to add User and check if admin
     //if User that is entered has admin role, a new user can be registered
 
-    /*
+
     @PostMapping("/register")
     public User registerUser(@RequestBody RegistrationDTO body){
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
-    */
+
     @PostMapping("/login")
     public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
         return authenticationService.loginUser(body.getUsername(),body.getPassword());
