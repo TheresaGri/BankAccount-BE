@@ -1,5 +1,6 @@
 package com.bankApplication.BankAccountBE.services;
 
+import com.bankApplication.BankAccountBE.models.User;
 import com.bankApplication.BankAccountBE.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,5 +26,10 @@ public class UserService implements UserDetailsService {
         System.out.println("In the user details service");
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
 
+    }
+
+    public long findIdByUsername(String username) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        return user.getId();
     }
 }

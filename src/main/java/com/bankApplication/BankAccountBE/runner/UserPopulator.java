@@ -27,7 +27,7 @@ public class UserPopulator {
             roles.add(admin);
             PublicUser publicUser = new PublicUser(1, "Theresa", "Grimus");
             publicUserRepository.save(publicUser);
-            User user1 = new User("Theresa", passwordEncode.encode("password"), roles);
+            User user1 = new User("1234", passwordEncode.encode("password"), roles);
             userRepository.save(user1);
 
         };

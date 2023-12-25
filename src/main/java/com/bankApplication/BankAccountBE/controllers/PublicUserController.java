@@ -2,10 +2,14 @@ package com.bankApplication.BankAccountBE.controllers;
 
 import com.bankApplication.BankAccountBE.models.PublicUser;
 import com.bankApplication.BankAccountBE.services.PublicUserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/publicUser")
@@ -19,7 +23,11 @@ public class PublicUserController {
     }
 
     @GetMapping("/{userId}")
-    public PublicUser getPublicUserByUserId(long userId) {
-        return publicUserService.findPublicUserByUserId(userId);
+    public ResponseEntity<PublicUser> getPublicUserByUserId(@PathVariable Long userId) {
+        Optional<PublicUser> publicUserOptional = publicUserService.findPublicUserByUserId(userId);
+
+        return publicUserOptional
+                .map(publicUser -> ResponseEntity.ok().body(publicUser))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

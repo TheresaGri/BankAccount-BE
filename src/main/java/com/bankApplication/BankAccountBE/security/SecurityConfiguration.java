@@ -60,7 +60,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/login").permitAll();
                     //TODO: is this correctly implemented?
-                    auth.requestMatchers("/publicUser/{userId}/**").access(userSecurity);
+                    auth.requestMatchers("/publicUser/{userId}").access(userSecurity);
                     //   auth.requestMatchers("/auth/register").hasAnyRole("ADMIN");
                     auth.anyRequest().authenticated();
                 });
