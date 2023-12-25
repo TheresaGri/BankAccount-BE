@@ -24,17 +24,11 @@ public class UserSecurity implements AuthorizationManager<RequestAuthorizationCo
 
     @Override
     public AuthorizationDecision check(Supplier authenticationSupplier, RequestAuthorizationContext ctx) {
-        // get {userId} from the request
         Long userId = Long.parseLong(ctx.getVariables().get("userId"));
-        System.out.println(userId);
         Authentication authentication = (Authentication) authenticationSupplier.get();
-        System.out.println(authentication);
-        System.out.println(hasUserId(authentication,userId));
-        System.out.println(new AuthorizationDecision(hasUserId(authentication, userId)));
         return new AuthorizationDecision(hasUserId(authentication, userId));
     }
 
-    //TODO: is this correctly implemented? does not seem like it
     public boolean hasUserId(Authentication authentication, Long userId) {
              return Optional.ofNullable(authentication)
                 .map(Authentication::getPrincipal)
@@ -43,11 +37,6 @@ public class UserSecurity implements AuthorizationManager<RequestAuthorizationCo
                         Jwt jwt = (Jwt) principal;
                         String userName = jwt.getSubject();
                         return userId.equals(userService.findIdByUsername(userName));
-                    }
-
-                    if (principal instanceof User) {
-                        User user = (User) principal;
-                        return userId.equals(user.getId());
                     }
 
                     return false;
