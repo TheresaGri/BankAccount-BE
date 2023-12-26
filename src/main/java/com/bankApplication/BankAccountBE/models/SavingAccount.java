@@ -1,10 +1,9 @@
 package com.bankApplication.BankAccountBE.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class SavingAccount {
@@ -13,26 +12,21 @@ public class SavingAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long savingAccountAmount;
+    @OneToMany
+    private List<Transaction> savingAccountTransactionList;
 
     private long userId;
 
 
-    public SavingAccount(long savingAccountAmount, long userId) {
-        this.savingAccountAmount = savingAccountAmount;
-        this.userId = userId;
-    }
-
     public SavingAccount() {
     }
 
-    public long getSavingAccountAmount() {
-        return savingAccountAmount;
+    public SavingAccount(List<Transaction> savingAccountTransactionList, long userId) {
+        this.savingAccountTransactionList = savingAccountTransactionList;
+        this.userId = userId;
     }
 
-    public void setSavingAccountAmount(long savingAccountAmount) {
-        this.savingAccountAmount = savingAccountAmount;
-    }
+
 
     public long getUserId() {
         return userId;
@@ -40,5 +34,13 @@ public class SavingAccount {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public List<Transaction> getSavingAccountTransactionList() {
+        return savingAccountTransactionList;
+    }
+
+    public void setSavingAccountTransactionList(List<Transaction> savingAccountTransactionList) {
+        this.savingAccountTransactionList = savingAccountTransactionList;
     }
 }

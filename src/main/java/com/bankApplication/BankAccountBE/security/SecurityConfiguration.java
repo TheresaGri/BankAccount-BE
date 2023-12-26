@@ -65,6 +65,8 @@ public class SecurityConfiguration {
                     */
                     auth.requestMatchers("/transactions/{userId}").access(userSecurity);
                     auth.requestMatchers("/userDTO/{userId}").access(userSecurity);
+                    auth.requestMatchers("/giroAccount/{userId}").access(userSecurity);
+                    auth.requestMatchers("/giroAccount/{userId}/sumOfTransactions/").access(userSecurity);
                     auth.anyRequest().authenticated();
                 });
 

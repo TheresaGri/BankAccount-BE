@@ -5,15 +5,16 @@ import java.util.List;
 public class UserDTO {
 
     private PublicUser publicUser;
-    private List<Transaction> transactionList;
+    private GiroAccount giroAccount;
     private SavingAccount savingAccount;
-    private long totalSumOfTransactionAmount;
+    private long giroAccountTransactionSum;
+    private long savingAccountTransactionSum;
 
-    public UserDTO(PublicUser publicUser, List<Transaction> transactionList, SavingAccount savingAccount, long totalSumOfTransactionAmount) {
+
+    public UserDTO(PublicUser publicUser, GiroAccount giroAccount, SavingAccount savingAccount) {
         this.publicUser = publicUser;
-        this.transactionList = transactionList;
+        this.giroAccount = giroAccount;
         this.savingAccount = savingAccount;
-        this.totalSumOfTransactionAmount = totalSumOfTransactionAmount;
     }
 
 
@@ -25,13 +26,7 @@ public class UserDTO {
         this.publicUser = publicUser;
     }
 
-    public List<Transaction> getTransactionList() {
-        return transactionList;
-    }
 
-    public void setTransactionList(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
-    }
 
     public SavingAccount getSavingAccount() {
         return savingAccount;
@@ -41,11 +36,28 @@ public class UserDTO {
         this.savingAccount = savingAccount;
     }
 
-    public long getTotalSumOfTransactionAmount() {
-        return totalSumOfTransactionAmount;
+
+    public GiroAccount getGiroAccount() {
+        return giroAccount;
     }
 
-    public void setTotalSumOfTransactionAmount(long totalSumOfTransactionAmount) {
-        this.totalSumOfTransactionAmount = totalSumOfTransactionAmount;
+    public void setGiroAccount(GiroAccount giroAccount) {
+        this.giroAccount = giroAccount;
+    }
+
+    public long getGiroAccountTransactionSum() {
+        return giroAccountTransactionSum;
+    }
+
+    public void setGiroAccountTransactionSum(long giroAccountTransactionSum) {
+        this.giroAccountTransactionSum = giroAccountTransactionSum;
+    }
+
+    public long getSavingAccountTransactionSum() {
+        return savingAccountTransactionSum;
+    }
+
+    public void setSavingAccountTransactionSum(long savingAccountTransactionSum) {
+        this.savingAccountTransactionSum = savingAccountTransactionSum;
     }
 }

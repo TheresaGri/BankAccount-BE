@@ -1,7 +1,6 @@
 package com.bankApplication.BankAccountBE.security;
 
-import com.bankApplication.BankAccountBE.models.User;
-import com.bankApplication.BankAccountBE.repositories.UserRepository;
+
 import com.bankApplication.BankAccountBE.services.UserService;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
@@ -30,7 +29,7 @@ public class UserSecurity implements AuthorizationManager<RequestAuthorizationCo
     }
 
     public boolean hasUserId(Authentication authentication, Long userId) {
-             return Optional.ofNullable(authentication)
+        return Optional.ofNullable(authentication)
                 .map(Authentication::getPrincipal)
                 .map(principal -> {
                     if (principal instanceof Jwt) {
