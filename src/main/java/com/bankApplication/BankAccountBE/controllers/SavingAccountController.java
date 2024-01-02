@@ -2,6 +2,7 @@ package com.bankApplication.BankAccountBE.controllers;
 
 import com.bankApplication.BankAccountBE.models.PublicUser;
 import com.bankApplication.BankAccountBE.models.SavingAccount;
+import com.bankApplication.BankAccountBE.models.Transaction;
 import com.bankApplication.BankAccountBE.services.SavingAccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,10 @@ public class SavingAccountController {
         return savingAccountOptional
                 .map(savingAccount -> ResponseEntity.ok().body(savingAccount))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{userId}")
+    public void saveNewTransactionOnSavingAccountAndGiroAccount(@PathVariable long userId,  @RequestBody Transaction newTransaction) {
+        savingAccountService.saveNewTransactionForSavingAccountAndGiroAccount(userId, newTransaction);
     }
 }
