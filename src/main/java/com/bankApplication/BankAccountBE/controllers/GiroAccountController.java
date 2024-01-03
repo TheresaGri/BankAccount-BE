@@ -27,4 +27,9 @@ public class GiroAccountController {
     public long getSumOfTransactionsByUserId(@PathVariable long userId) {
         return giroAccountService.getSumOfTransactionsOfGiroAccount(userId);
     }
+
+    @PostMapping("/{userId}")
+    public void saveNewTransactionOnGiroAccount(@PathVariable long userId,  @RequestBody Transaction newTransaction) {
+        giroAccountService.saveNewTransactionOnGiroAccount(userId, newTransaction);
+    }
 }

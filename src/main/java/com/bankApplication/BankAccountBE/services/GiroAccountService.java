@@ -1,5 +1,6 @@
 package com.bankApplication.BankAccountBE.services;
 
+import com.bankApplication.BankAccountBE.exceptions.NoTransactionByThisUserIdFound;
 import com.bankApplication.BankAccountBE.models.GiroAccount;
 import com.bankApplication.BankAccountBE.models.Transaction;
 import com.bankApplication.BankAccountBE.models.TransactionType;
@@ -29,8 +30,10 @@ public class GiroAccountService {
         return giroAccountRepository.findGiroAccountByUserId(userId);
     }
 
-    public long getSumOfTransactionsOfGiroAccount(long userId) {
+    public long getSumOfTransactionsOfGiroAccount(long userId)  {
+        //TODO: implement exception
         GiroAccount giroAccountByUserId = giroAccountRepository.findById(userId).orElse(null);
+
         long sum = 0;
         List<Transaction> getTransactionsOfGiroAccountByUserId = giroAccountByUserId.getGiroAccountTransactions();
         if (giroAccountByUserId != null) {
@@ -45,16 +48,22 @@ public class GiroAccountService {
         return sum;
     }
 
-    public void saveNewTransactionOfGiroAccount(long userId, Transaction transaction) {
+    public void saveNewTransactionOnGiroAccountWithSavingAccount(long userId, Transaction transaction) {
+        //TODO: implement exception
         transaction.setDateAndTime(LocalDateTime.now());
         GiroAccount giroAccountByUserId = giroAccountRepository.findGiroAccountByUserId(userId).orElse(null);
-        if(giroAccountByUserId != null) {
-           // transactionService.saveTransaction(userId,transaction);
+        if (giroAccountByUserId != null) {
             List<Transaction> transactionList = giroAccountByUserId.getGiroAccountTransactions();
             transactionList.add(transaction);
             giroAccountByUserId.setGiroAccountTransactions(transactionList);
             giroAccountRepository.save(giroAccountByUserId);
         }
+    }
+
+    public void saveNewTransactionOnGiroAccount(long userId, Transaction transaction) {
+        transaction.setTransactionType(TransactionType.OUTGOING);
+        transactionService.saveTransaction(userId, transaction);
+        saveNewTransactionOnGiroAccountWithSavingAccount(userId, transaction);
     }
 
 }

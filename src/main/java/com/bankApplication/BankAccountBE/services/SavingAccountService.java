@@ -73,7 +73,7 @@ public class SavingAccountService {
             transactionOfGiroAccount.setTransactionType(TransactionType.INCOMING);
         }
         transactionService.saveTransaction(userId, transactionOfGiroAccount);
-        giroAccountService.saveNewTransactionOfGiroAccount(userId, transactionOfGiroAccount);
+        giroAccountService.saveNewTransactionOnGiroAccountWithSavingAccount(userId, transactionOfGiroAccount);
 
     }
 
