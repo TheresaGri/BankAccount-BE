@@ -4,6 +4,8 @@ import com.bankApplication.BankAccountBE.models.UserDTO;
 import com.bankApplication.BankAccountBE.services.UserDTOService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/userDTO")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -13,6 +15,11 @@ public class UserDTOController {
 
     public UserDTOController(UserDTOService userDTOService) {
         this.userDTOService = userDTOService;
+    }
+
+    @GetMapping
+    public List<UserDTO> getAllUserDTOs() {
+        return userDTOService.getUserDTOList();
     }
 
     @GetMapping(value = "/{userId}", produces = "application/json")

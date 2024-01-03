@@ -3,6 +3,7 @@ package com.bankApplication.BankAccountBE.services;
 import com.bankApplication.BankAccountBE.models.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,12 +14,14 @@ public class UserDTOService {
     private final SavingAccountService savingAccountService;
     private final TransactionService transactionService;
     private final GiroAccountService giroAccountService;
+    private final UserService userService;
 
-    public UserDTOService(PublicUserService publicUserService, SavingAccountService savingAccountService, TransactionService transactionService, GiroAccountService giroAccountService) {
+    public UserDTOService(PublicUserService publicUserService, SavingAccountService savingAccountService, TransactionService transactionService, GiroAccountService giroAccountService, UserService userService) {
         this.publicUserService = publicUserService;
         this.savingAccountService = savingAccountService;
         this.transactionService = transactionService;
         this.giroAccountService = giroAccountService;
+        this.userService = userService;
     }
 
 
@@ -33,5 +36,16 @@ public class UserDTOService {
         userDTO.setSavingAccountTransactionSum(savingAccountService.getSumOfTransactionsOfSavingAccount(userId));
 
         return userDTO;
+    }
+
+    public List<UserDTO> getUserDTOList() {
+        List<User> allUsers = userService.findAllUsers();
+        List<UserDTO> createdUserDTOs = new ArrayList<>();
+        if(allUsers.size() != 0) {
+            for(User u: allUsers) {
+                createdUserDTOs.add(getUserDTO(u.getId()));
+            }
+        }
+        return createdUserDTOs;
     }
 }

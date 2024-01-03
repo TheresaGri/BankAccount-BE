@@ -63,6 +63,7 @@ public class SecurityConfiguration {
                    /*  auth.requestMatchers("/publicUser/{userId}").access(userSecurity);
                     auth.requestMatchers("/savingAccount/{userId}").access(userSecurity);
                     */
+                    auth.requestMatchers("/userDTO").hasAuthority("ROLE_ADMIN");
                     auth.requestMatchers("/transactions/{userId}").access(userSecurity);
                     auth.requestMatchers("/userDTO/{userId}").access(userSecurity);
                     auth.requestMatchers("/giroAccount/{userId}").access(userSecurity);
